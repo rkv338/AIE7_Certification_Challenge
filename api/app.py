@@ -29,10 +29,11 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    global PDF_ID
     with open("../docs/Therapy Doc.pdf", "rb") as file:
         file_like = io.BytesIO(file.read())
         file_like.name = "Therapy Doc.pdf"
-        await upload_pdf_rag(file=UploadFile(file=file_like))
+        PDF_ID = await upload_pdf_rag(file=UploadFile(file=file_like))
     logger.info("PDF uploaded and ready for RAG")
     yield 
     print("Application shutdown")
@@ -68,39 +69,6 @@ class RAGChatRequest(BaseModel):
 # Global storage for PDF documents and their vector databases
 pdf_documents: Dict[str, Dict] = {}
 
-
-
-    
-# Define the main chat endpoint that handles POST requests
-@app.post("/api/chat")
-async def chat(request: ChatRequest):
-    try:
-        # Initialize OpenAI client with the provided API key
-        client = OpenAI(api_key=request.api_key)
-        print('GOT API REQUEST')
-        # Create an async generator function for streaming responses
-        async def generate():
-            # Create a streaming chat completion request
-            stream = client.chat.completions.create(
-                model=request.model,
-                messages=[
-                    {"role": "developer", "content": request.developer_message},
-                    {"role": "user", "content": request.user_message}
-                ],
-                stream=True  # Enable streaming response
-            )
-            
-            # Yield each chunk of the response as it becomes available
-            for chunk in stream:
-                if chunk.choices[0].delta.content is not None:
-                    yield chunk.choices[0].delta.content
-
-        # Return a streaming response to the client
-        return StreamingResponse(generate(), media_type="text/plain")
-    
-    except Exception as e:
-        # Handle any errors that occur during processing
-        raise HTTPException(status_code=500, detail=str(e))
 
 # Define a health check endpoint to verify API status
 @app.get("/api/health")
@@ -154,13 +122,9 @@ async def upload_pdf_rag(file: UploadFile = File(...)):
                 "vector_db": vector_db,
                 "document_count": len(chunks)
             }
-            
-            return JSONResponse(content={
-                "pdf_id": pdf_id,
-                "filename": file.filename,
-                "chunks": len(chunks),
-                "message": "PDF processed and indexed successfully"
-            })
+            logger.info(f"PDF ID: {pdf_id}")
+            # PDF_ID = pdf_id
+            return pdf_id
             
         finally:
             # Clean up temporary file
@@ -172,15 +136,17 @@ async def upload_pdf_rag(file: UploadFile = File(...)):
 # Define the RAG chat endpoint
 @app.post("/api/chat-rag")
 async def chat_rag(request: RAGChatRequest):
+    logger.info(f"Received RAG chat request: {request}")
+    logger.info(f"PDF ID: {PDF_ID}")
     """
     Chat with a PDF using RAG system.
     """
     try:
         # Check if PDF exists
-        if request.pdf_id not in pdf_documents:
+        if PDF_ID not in pdf_documents:
             raise HTTPException(status_code=404, detail="PDF not found")
         
-        pdf_data = pdf_documents[request.pdf_id]
+        pdf_data = pdf_documents[PDF_ID]
         vector_db = pdf_data["vector_db"]
         
         # Search for relevant chunks
@@ -212,6 +178,7 @@ async def chat_rag(request: RAGChatRequest):
         # Initialize chat model
         chat_model = ChatOpenAI(model_name=request.model or "gpt-4o-mini")
         
+        logger.info(f"Creating async generator for streaming response")
         # Create async generator for streaming response
         async def generate():
             async for chunk in chat_model.astream(messages):

@@ -1,6 +1,6 @@
 Components:
 upload document for top 15 problems humans face to vector db - done
-RAG from that document
+RAG from that document - done
 Upload text from user to vector store for further context on user
 Reply back in an empathetic, yet constructive manner.
 # Task 1: Defining your Problem and Audience
