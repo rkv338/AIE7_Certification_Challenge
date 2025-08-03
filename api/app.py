@@ -23,6 +23,7 @@ from aimakerspace.openai_utils.chatmodel import ChatOpenAI
 from aimakerspace.openai_utils.prompts import SystemRolePrompt, UserRolePrompt
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
+from langchain_core.messages import HumanMessage
 load_dotenv()
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -133,15 +134,18 @@ async def upload_pdf_rag(file: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing PDF: {str(e)}")
 
-# Define the RAG chat endpoint
+# Define the RAG chat endpoint that uses the Agent
 @app.post("/api/chat-rag")
 async def chat_rag(request: RAGChatRequest):
     logger.info(f"Received RAG chat request: {request}")
     logger.info(f"PDF ID: {PDF_ID}")
     """
-    Chat with a PDF using RAG system.
+    Chat using Agent with RAG + Tavily fallback for therapy support.
     """
     try:
+        # Import the Agent here to avoid circular imports
+        from Agent import create_agent_graph, set_therapy_vector_db
+        
         # Check if PDF exists
         if PDF_ID not in pdf_documents:
             raise HTTPException(status_code=404, detail="PDF not found")
@@ -149,45 +153,65 @@ async def chat_rag(request: RAGChatRequest):
         pdf_data = pdf_documents[PDF_ID]
         vector_db = pdf_data["vector_db"]
         
-        # Search for relevant chunks
-        relevant_chunks = vector_db.search_by_text(
-            request.user_message, 
-            k=3, 
-            return_as_text=True
-        )
+        # Set the vector database for the agent's RAG tool
+        set_therapy_vector_db(vector_db)
         
-        # Create context from relevant chunks
-        context = "\n\n".join(relevant_chunks)
+        # Create the agent graph
+        agent_graph = create_agent_graph()
         
-        # Create system prompt for RAG
-        system_prompt = SystemRolePrompt(
-            "You are a helpful therapist that helps people deal with problems that they are facing in an empathetic, yet constructive manner."
-            "Always cite specific parts of the document when possible.\n\n"
-            "Document Context:\n{context}"
-        )
         
-        # Create user prompt
-        user_prompt = UserRolePrompt("Question: {question}")
+        # Prepare the input for the agent
+        agent_input = {
+            "messages": [HumanMessage(content=request.user_message)]
+        }
         
-        # Prepare messages for chat
-        messages = [
-            system_prompt.create_message(context=context),
-            user_prompt.create_message(question=request.user_message)
-        ]
+        logger.info(f"Sending request to therapy agent")
         
-        # Initialize chat model
-        chat_model = ChatOpenAI(model_name=request.model or "gpt-4o-mini")
-        
-        logger.info(f"Creating async generator for streaming response")
         # Create async generator for streaming response
         async def generate():
-            async for chunk in chat_model.astream(messages):
-                yield chunk
+            try:
+                final_response = ""
+                
+                # Stream the agent's response
+                async for chunk in agent_graph.astream(agent_input, stream_mode="updates"):
+                    for node, values in chunk.items():
+                        if node == "agent" and values["messages"]:
+                            latest_message = values["messages"][-1]
+                            
+                            # If it's the final response (no tool calls), stream it
+                            if not hasattr(latest_message, 'tool_calls') or not latest_message.tool_calls:
+                                content = latest_message.content
+                                if content and content != final_response:
+                                    # Stream new content
+                                    new_content = content[len(final_response):]
+                                    final_response = content
+                                    
+                                    # Stream word by word for better UX
+                                    words = new_content.split()
+                                    for word in words:
+                                        yield word + " "
+                                        await asyncio.sleep(0.05)
+                
+                # If no streaming happened, send the final response
+                if not final_response:
+                    # Get the final state
+                    final_state = await agent_graph.ainvoke(agent_input)
+                    final_response = final_state["messages"][-1].content
+                    
+                    words = final_response.split()
+                    for word in words:
+                        yield word + " "
+                        await asyncio.sleep(0.05)
+                        
+            except Exception as e:
+                logger.error(f"Error in agent processing: {e}")
+                yield f"I'm experiencing some technical difficulties, but I'm here to help. Could you please rephrase your question? {str(e)}"
 
         return StreamingResponse(generate(), media_type="text/plain")
         
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error in RAG chat: {str(e)}")
+        logger.error(f"Error in RAG chat: {e}")
+        raise HTTPException(status_code=500, detail=f"Error in therapy chat: {str(e)}")
 
 # Define endpoint to list uploaded PDFs
 @app.get("/api/pdfs")
