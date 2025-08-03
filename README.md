@@ -1,8 +1,10 @@
 Components:
 upload document for top 15 problems humans face to vector db - done
 RAG from that document - done
+Reply back in an empathetic, yet constructive manner. - done
+Use Tavily for topics outside of the ones listed in the document.
 Upload text from user to vector store for further context on user
-Reply back in an empathetic, yet constructive manner.
+
 # Task 1: Defining your Problem and Audience
 
 1. Write a succinct 1-sentence description of the problem
