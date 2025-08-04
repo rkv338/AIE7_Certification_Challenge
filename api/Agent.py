@@ -20,8 +20,7 @@ from langgraph.graph import END
 from langchain_core.tools import BaseTool
 from pydantic import BaseModel
 
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_PROJECT"] = f"AIE7 - LangGraph - {uuid4().hex[0:8]}"
+
 
 # Set up logger for tracking tool usage
 logger = logging.getLogger(__name__)
