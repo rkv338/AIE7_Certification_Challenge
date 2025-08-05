@@ -99,3 +99,5 @@ These results were outputted to the ragas_evaluation_results.json.
      - For an application like this, boosting the metrics in the evaluation is key. In addition, empathy needs to be measured in the responses. The agent should always be empathetic, yet constructive towards the user.
      - Adding user messages to context/vector store. Having a contextual backlog for a specific user should help shape responses to future questions the user may have.
      - My original idea is to actually have the agent speak directly to the user via a phone call. This would replace an impersonal alarm ringtone in the morning and allow the user to actually speak to the agent to gain clarity on their obstacles and how to overcome them before the day even starts.
+     - The responses from the agent are also too verbose, no real user wants to read so much text. In a real-life therapist scenario, there is more of a conversational exchange than a long listening period.
+     I expect to shorten the responses from the agent to ensure that the conversation feels more natural, almost like talking to a friend.
