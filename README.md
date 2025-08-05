@@ -1,5 +1,5 @@
 
-
+Loom: https://www.loom.com/share/ddf55b4a022b4e1aa1007b74af17f389?sid=b2a10d06-c4a2-4083-8b94-eadeab1dcbd4
 # Task 1: Defining your Problem and Audience
 
 1. Write a succinct 1-sentence description of the problem

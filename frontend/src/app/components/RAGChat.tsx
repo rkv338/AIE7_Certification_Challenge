@@ -105,7 +105,7 @@ export default function RAGChat({ selectedPdfId }: RAGChatProps) {
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 && (
           <div className="text-center text-gray-500 py-8">
-            <p>Start asking questions about your PDF!</p>
+            <p>I'm here to help!</p>
           </div>
         )}
         
