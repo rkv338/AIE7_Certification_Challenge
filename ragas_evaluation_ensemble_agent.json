@@ -1,0 +1,196 @@
+{
+  "evaluation_timestamp": "2025-08-04T20:51:23.864645",
+  "dataset_info": {
+    "dataset_path": "dataset.csv",
+    "total_questions": 12,
+    "evaluation_completed": true
+  },
+  "overall_metrics": {
+    "faithfulness": 0.5833333333333334,
+    "answer_relevancy": 0.8447226844000006,
+    "context_precision": 0.083333333325,
+    "context_recall": 0.7132936507936508
+  },
+  "detailed_results": [
+    {
+      "question_id": 1,
+      "question": "How can an AI Helper assist with feelings of loneliness?",
+      "agent_answer": "An AI Helper can assist with feelings of loneliness in several ways:\n\n1. Providing Emotional Support: Offering a compassionate and non-judgmental presence to listen and validate your feelings.\n2. Engaging in Conversation: Talking about your interests, hobbies, or daily experiences to foster a sense of connection.\n3. Offering Coping Strategies: Suggesting activities or techniques such as mindfulness, journaling, or relaxation exercises to manage loneliness.\n4. Connecting to Resources: Guiding you to online communities, support groups, or mental health resources where you can find additional support.\n5. Encouraging Social Engagement: Helping you plan ways to connect with friends, family, or new social opportunities.\n6. Providing Educational Content: Sharing information about loneliness and ways to overcome it, empowering you with knowledge.\n\nWould you like me to assist you with specific strategies or resources?",
+      "ground_truth": "An AI Helper can offer friendly conversation, suggest local or online communities, and help role-play conversations to reduce anxiety.",
+      "contexts": [
+        "General therapeutic knowledge and empathetic guidance"
+      ],
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9999999999999986,
+        "context_precision": 0.0,
+        "context_recall": 0.6666666666666666
+      }
+    },
+    {
+      "question_id": 2,
+      "question": "me not know if therapy help when grief too much, what it do?",
+      "agent_answer": "Therapy can be very helpful when you're experiencing intense grief. It provides a safe space to express your feelings, understand your emotions, and develop coping strategies. Therapists can help you process your loss, reduce feelings of loneliness, and find ways to move forward at your own pace. If you're feeling overwhelmed by grief, reaching out to a mental health professional might be a good step.",
+      "ground_truth": "If you feel stuck or overwhelmed by grief, seeking therapy is suggested as a constructive step. Therapy can help you process your feelings and support you when grief feels too much.",
+      "contexts": [
+        "General therapeutic knowledge and empathetic guidance"
+      ],
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8924524294047852,
+        "context_precision": 0.0,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "question_id": 3,
+      "question": "Why career dissatisfaction make me feel lost?",
+      "agent_answer": "Feeling lost due to career dissatisfaction is a common experience. When you're unhappy with your career, it can impact your sense of purpose, self-esteem, and overall well-being. This dissatisfaction may lead to feelings of confusion, uncertainty about the future, and a lack of direction, which can make you feel lost. It's important to explore what aspects of your career are causing these feelings and consider steps towards finding a more fulfilling path. Reflecting on your values, interests, and goals can help clarify what changes might bring you greater satisfaction. If these feelings persist, talking to a career counselor or a mental health professional can provide additional support and guidance.",
+      "ground_truth": "Career dissatisfaction is listed as a reason people can feel lost, and it is okay not to have everything figured out. Feeling lost is a signal you are ready to search for something real and meaningful.",
+      "contexts": [
+        "General therapeutic knowledge and empathetic guidance"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "question_id": 4,
+      "question": "How can an AI Helper assist someone experiencing financial hardship or anxiety?",
+      "agent_answer": "An AI Helper can assist someone experiencing financial hardship or anxiety in several ways:\n\n1. Providing Information and Resources: Offer guidance on financial management, budgeting, and accessing financial aid or assistance programs.\n2. Emotional Support: Offer empathetic listening and coping strategies to help manage anxiety and stress related to financial difficulties.\n3. Connecting to Professional Help: Suggest consulting financial advisors, counselors, or mental health professionals for personalized support.\n4. Practical Tools: Help create action plans, track expenses, or set achievable financial goals.\n5. Education: Provide information about financial literacy to empower better decision-making.\n\nWould you like specific tips or resources tailored to these issues?",
+      "ground_truth": "An AI Helper can support by helping build a basic budget, finding local aid, or offering emotional support through money-related anxiety.",
+      "contexts": [
+        "General therapeutic knowledge and empathetic guidance"
+      ],
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9999991421156662,
+        "context_precision": 0.0,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "question_id": 5,
+      "question": "grief make stress bad, what do for stress management when grieving?",
+      "agent_answer": "I'm sorry to hear you're going through a tough time. Grief can be very stressful, and managing that stress is important for your well-being. Here are some strategies that might help:\n\n1. Allow Yourself to Feel: It's okay to experience a range of emotions. Give yourself permission to grieve without judgment.\n2. Practice Mindfulness and Meditation: Techniques like deep breathing, meditation, or yoga can help calm your mind and reduce stress.\n3. Maintain a Routine: Keeping a regular schedule can provide a sense of normalcy and stability.\n4. Seek Support: Talk to friends, family, or a counselor about your feelings. Support groups for grief can also be helpful.\n5. Take Care of Your Body: Ensure you're eating nutritious foods, staying hydrated, and getting enough sleep and gentle exercise.\n6. Limit Stressors: If possible, reduce commitments or stressful activities temporarily.\n7. Engage in Activities You Enjoy: Doing things that bring you comfort or joy can provide relief.\n8. Be Patient with Yourself: Healing takes time. Allow yourself the space to grieve and recover at your own pace.\n\nIf your stress feels overwhelming or persistent, consider reaching out to a mental health professional for personalized support.",
+      "ground_truth": "grief feel heavy, make stress worse. for stress management, try find big stress and do less if can, take breaks, talk to people who help, and rest. if too much, get help from pro. AI can remind you to rest and give gentle support.",
+      "contexts": [
+        "General therapeutic knowledge and empathetic guidance"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.9158565887428715,
+        "context_precision": 0.0,
+        "context_recall": 0.75
+      }
+    },
+    {
+      "question_id": 6,
+      "question": "How can someone experiencing career dissatisfaction or job loss build resilience, and what supportive steps are recommended to help navigate these challenges?",
+      "agent_answer": "Building resilience during times of career dissatisfaction or job loss involves developing emotional strength and practical strategies to adapt to change. Here are some supportive steps to help navigate these challenges:\n\n1. Acknowledge Your Feelings: Allow yourself to feel and process emotions such as disappointment, frustration, or anxiety. Recognizing these feelings is the first step toward coping.\n\n2. Seek Support: Reach out to friends, family, or a mental health professional for emotional support and guidance. Sharing your experiences can alleviate feelings of isolation.\n\n3. Practice Self-Care: Engage in activities that promote well-being, such as regular exercise, healthy eating, sufficient sleep, and mindfulness or relaxation techniques.\n\n4. Reflect and Reassess: Use this time to evaluate your career goals, values, and interests. Consider what changes might lead to greater satisfaction and fulfillment.\n\n5. Develop New Skills: Invest in learning new skills or enhancing existing ones to increase employability and confidence.\n\n6. Set Realistic Goals: Break down your career transition into manageable steps, setting achievable objectives to maintain motivation and a sense of progress.\n\n7. Stay Positive and Flexible: Maintain a hopeful outlook and be open to new opportunities or alternative career paths.\n\n8. Take Action: Proactively search for new job opportunities, network, and update your resume and online profiles.\n\n9. Maintain Routine: Establish a daily routine to create a sense of normalcy and purpose.\n\n10. Be Patient: Understand that rebuilding your career and resilience takes time. Practice patience and self-compassion throughout the process.\n\nImplementing these steps can help strengthen resilience and facilitate a positive transition through career challenges.",
+      "ground_truth": "Someone experiencing career dissatisfaction or job loss can build resilience by following several supportive steps outlined in the context. First, it is important to reflect on moments that previously brought joy or meaning, and to try new experiences without the pressure of immediate success. Defining personal values and setting small, achievable goals can help create a sense of momentum. Talking to mentors, coaches, or therapists provides valuable perspective. Additionally, acknowledging the emotional impact of setbacks without self-judgment, reframing situations as feedback rather than failure, and returning to activities that foster competence and wholeness are key actions. Resilience is strengthened through these constructive steps and by trying again after setbacks. Support from an AI helper can include guiding value-alignment exercises, suggesting reflective journaling prompts, and offering confidence-boosting actions or role-play scenarios for future attempts.",
+      "contexts": [
+        "General therapeutic knowledge and empathetic guidance"
+      ],
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9514438304941911,
+        "context_precision": 0.0,
+        "context_recall": 0.14285714285714285
+      }
+    },
+    {
+      "question_id": 7,
+      "question": "How can practicing empathetic self-compassion help challenge negative self-talk when experiencing low self-worth or feeling overwhelmed?",
+      "agent_answer": "Practicing empathetic self-compassion can be highly effective in challenging negative self-talk and alleviating feelings of low self-worth or being overwhelmed. When you approach yourself with kindness and understanding, similar to how you would treat a close friend, it becomes easier to recognize and counteract harsh or critical thoughts. This compassionate stance helps you:\n\n1. **Reduce Self-Criticism:** By acknowledging your feelings without judgment, you can diminish the power of negative self-talk that often fuels low self-worth.\n2. **Increase Emotional Resilience:** Self-compassion provides a supportive inner environment, making it easier to cope with stress and overwhelm.\n3. **Promote Positive Self-Perception:** Empathy towards yourself encourages a more balanced view of your strengths and weaknesses, fostering a healthier self-image.\n4. **Encourage Mindfulness:** Being present with your feelings without judgment allows you to observe negative thoughts without automatically believing them, creating space for more positive or realistic perspectives.\n5. **Break the Cycle of Negativity:** Compassionate self-talk can interrupt the cycle of rumination and self-criticism, replacing it with nurturing and constructive inner dialogue.\n\nOverall, empathetic self-compassion acts as a buffer against negative self-talk, helping you build resilience and a kinder relationship with yourself, especially during challenging times.",
+      "ground_truth": "Practicing empathetic self-compassion can help challenge negative self-talk by reminding you that your value is already within you and that it is okay to pause when feeling overwhelmed. The guidance suggests that overwhelm is a sign you care, not a sign of laziness or incapability, and that you are enough even when you don’t feel it. By noticing and challenging negative self-talk and treating yourself with kindness, you can begin to shift internal beliefs about self-worth and take constructive steps forward.",
+      "contexts": [
+        "General therapeutic knowledge and empathetic guidance"
+      ],
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9626599750429108,
+        "context_precision": 0.0,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "question_id": 8,
+      "question": "What constructive steps and sources of affirming social support are recommended for someone experiencing career dissatisfaction or job loss, and how can these approaches help address the emotional challenges associated with such transitions?",
+      "agent_answer": "Experiencing career dissatisfaction or job loss can be emotionally challenging, but taking constructive steps and seeking affirming social support can significantly aid in navigating this transition. Here are some recommended approaches:\n\n1. Reflect and Reassess:\n- Identify your strengths, skills, and interests.\n- Clarify your values and what you want in your next career move.\n- Consider seeking guidance from a career counselor or coach.\n\n2. Set Realistic Goals:\n- Break down your job search or career transition into manageable steps.\n- Celebrate small achievements to build confidence.\n\n3. Enhance Skills and Qualifications:\n- Take courses or workshops to improve or acquire new skills.\n- Volunteer or engage in projects that align with your interests.\n\n4. Build and Utilize Social Support:\n- Reach out to friends, family, and colleagues for encouragement and advice.\n- Join professional networks, industry groups, or online communities.\n- Attend networking events and job fairs.\n\nSources of affirming social support include:\n- Supportive friends and family who listen and provide encouragement.\n- Mentors or trusted colleagues offering guidance and reassurance.\n- Peer support groups for career changers or job seekers.\n- Online forums and social media groups focused on career development.\n\n5. Practice Self-Care:\n- Engage in activities that reduce stress, such as exercise, meditation, or hobbies.\n- Maintain a healthy routine to support emotional well-being.\n\n6. Seek Professional Help if Needed:\n- Consider therapy or counseling to address emotional challenges.\n- Mental health professionals can provide coping strategies and emotional support.\n\nHow these approaches help:\n- They foster resilience and a positive outlook.\n- They provide practical assistance and emotional reassurance.\n- They help combat feelings of isolation and boost confidence.\n- They facilitate a proactive mindset, empowering individuals to navigate their career transitions effectively.\n\nImplementing these steps can create a supportive environment that nurtures emotional health and promotes successful career transitions.",
+      "ground_truth": "For someone experiencing career dissatisfaction or job loss, several constructive steps are recommended to address the emotional challenges of this transition. These include reflecting on moments that brought joy or meaning, trying new experiences without the pressure of success, defining personal values, setting small goals to build momentum, and talking to mentors, coaches, or therapists for perspective (<1-hop>). In addition, surrounding oneself with affirming, nonjudgmental people and practicing small self-honoring actions, such as setting boundaries, are important sources of affirming social support (<2-hop>). Working with a therapist to heal root wounds is also suggested. These approaches help by providing empathetic guidance, reinforcing positive self-beliefs, and creating a supportive environment that validates one’s experiences and fosters resilience during periods of career-related grief or transition.",
+      "contexts": [
+        "General therapeutic knowledge and empathetic guidance"
+      ],
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9067019392066524,
+        "context_precision": 0.9999999999,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "question_id": 9,
+      "question": "how burnout happen and what can do for burnout",
+      "agent_answer": "Burnout typically occurs when a person experiences prolonged stress, overwork, or emotional exhaustion without adequate rest or support. It can be caused by factors such as excessive workload, lack of control, insufficient rewards, and poor work-life balance. Symptoms often include fatigue, cynicism, reduced performance, and emotional detachment.\n\nTo address burnout, consider the following strategies:\n1. **Prioritize Self-Care:** Ensure adequate sleep, nutrition, and physical activity.\n2. **Set Boundaries:** Learn to say no and delegate tasks when possible.\n3. **Take Breaks:** Regular breaks during work and time off can help recharge.\n4. **Seek Support:** Talk to friends, family, or a mental health professional.\n5. **Adjust Workload:** Communicate with your employer about workload concerns.\n6. **Engage in Relaxing Activities:** Practice mindfulness, hobbies, or relaxation techniques.\n7. **Reflect on Goals:** Reassess your goals and values to find more meaningful engagement.\n\nIf burnout persists, consulting a mental health professional can provide personalized strategies and support.",
+      "ground_truth": "burnout can come from career dissatisfaction, job loss, depression, or too much stress. to help with burnout, you can identify big stressors and try to reduce them, schedule downtime, reconnect with things or people that help you feel better, set boundaries, and get professional support if needed.",
+      "contexts": [
+        "General therapeutic knowledge and empathetic guidance"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.8784410457678961,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question_id": 10,
+      "question": "how trauma make me feel bad about myself and what i do to help with it?",
+      "agent_answer": "Trauma can significantly impact how you feel about yourself and your actions. It may lead to feelings of shame, guilt, worthlessness, or self-doubt. These feelings can make it difficult to see yourself in a positive light and can affect your confidence and motivation.\n\nTo help cope with these feelings and heal from trauma, consider the following steps:\n\n1. Seek Professional Support: A therapist or counselor trained in trauma can provide a safe space to explore your feelings and develop coping strategies.\n\n2. Practice Self-Compassion: Be gentle with yourself. Remember that trauma is not your fault, and healing takes time.\n\n3. Build a Support System: Surround yourself with understanding and caring people who can offer emotional support.\n\n4. Engage in Mindfulness and Relaxation Techniques: Practices like meditation, deep breathing, or yoga can help reduce stress and increase self-awareness.\n\n5. Challenge Negative Thoughts: Work on recognizing and reframing negative beliefs about yourself that stem from trauma.\n\n6. Focus on Self-Care: Prioritize activities that promote your well-being, such as regular exercise, healthy eating, and adequate sleep.\n\n7. Educate Yourself: Understanding trauma and its effects can empower you and reduce self-blame.\n\nRemember, healing from trauma is a journey, and seeking help is a strong and positive first step. Would you like more specific strategies or resources?",
+      "ground_truth": "trauma can make you feel bad about yourself by distorting self-perception and making you believe you not good enough or lovable. it can come from abuse, neglect, violence, or other hard things. to help, you can build safety, work with a trauma-informed therapist, practice grounding when triggered, and use somatic tools to reconnect with your body. also, notice and challenge negative self-talk, write affirmations about your strengths, and remember your value is already within you. healing takes time but is possible.",
+      "contexts": [
+        "General therapeutic knowledge and empathetic guidance"
+      ],
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9010357898663193,
+        "context_precision": 0.0,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "question_id": 11,
+      "question": "wht is burnot and wht steps cn i take to cope with it?",
+      "agent_answer": "Burnout is a state of emotional, physical, and mental exhaustion caused by prolonged stress, often related to work or personal responsibilities. It can lead to feelings of cynicism, detachment, and a reduced sense of accomplishment. \n\nTo cope with burnout, you can try the following steps:\n\n1. Recognize the Signs: Acknowledge that you're experiencing burnout and understand its impact on your well-being.\n2. Take Breaks: Allow yourself time to rest and recharge. Short breaks during work and longer vacations can help.\n3. Set Boundaries: Learn to say no to additional responsibilities that may overwhelm you.\n4. Prioritize Self-Care: Engage in activities that promote relaxation and joy, such as exercise, hobbies, or meditation.\n5. Seek Support: Talk to friends, family, or a mental health professional about your feelings.\n6. Reevaluate Goals: Reflect on your personal and professional goals and make adjustments if necessary.\n7. Practice Mindfulness: Incorporate mindfulness techniques to stay present and reduce stress.\n8. Improve Work Environment: Make changes at work to reduce stressors, such as organizing your workspace or discussing workload with your supervisor.\n\nIf burnout persists, consider seeking professional help to develop a tailored plan for recovery.",
+      "ground_truth": "Burnout is a state of emotional, mental, and physical exhaustion caused by prolonged stress. It drains motivation and joy, and can lead to cynicism or detachment. To cope with burnout, you can identify major stressors and reduce or delegate them, schedule regular restorative downtime, reconnect with nourishing activities or people, set boundaries around your time and energy, and seek professional support if burnout persists. Remember, you don’t have to earn rest—burnout means your body and mind are asking for care, not that you’ve failed.",
+      "contexts": [
+        "General therapeutic knowledge and empathetic guidance"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.8412994596472121,
+        "context_precision": 0.0,
+        "context_recall": 0.2
+      }
+    },
+    {
+      "question_id": 12,
+      "question": "how burnout happen and what can i do if i feel burnout, like what causes it and what steps i can try, cause i see burnout mentioned and i want to know what to do about it?",
+      "agent_answer": "Burnout is a state of emotional, physical, and mental exhaustion caused by prolonged and excessive stress, often related to work or other demanding areas of life. It occurs when you feel overwhelmed, emotionally drained, and unable to meet constant demands. Common causes include excessive work pressure, negative interpersonal interactions, long working hours, high responsibility, and unresolved stressors from personal or environmental factors.\n\nTo recover from burnout, consider the following steps:\n1. Identify and reduce sources of stress: Make changes in your work or personal environment that contribute to your stress.\n2. Prioritize self-care: Ensure you are getting enough rest, eating well, exercising, and engaging in activities that bring you joy.\n3. Seek support: Talk to friends, family, or mental health professionals about your feelings.\n4. Set boundaries: Learn to say no to additional responsibilities that you cannot handle.\n5. Take breaks: Allow yourself time to rest and recharge.\n6. Consider professional help: Therapy or counseling can provide strategies to manage stress and address underlying issues.\n\nRecovery time varies, but early intervention and making positive changes can significantly improve your situation. If you experience persistent feelings of burnout, consulting a mental health professional is advisable.",
+      "ground_truth": "burnout is when you feel really tired in your mind, body, and feelings because of too much stress for a long time. it can happen from overworking, not having good boundaries, always taking care of others without help, stress at work, or not noticing your own emotional needs. if you feel burnout, you don’t have to earn rest—your body and mind are telling you they need care, not that you failed. some steps you can try are: reflect on what brings you joy or meaning, try new things without worrying about being perfect, figure out what matters most to you, set small goals to help you feel better bit by bit, and talk to mentors, coaches, or therapists for support. also, an ai helper can guide you with exercises to help you find your values, give you journaling prompts, and help you explore new paths.",
+      "contexts": [
+        "General therapeutic knowledge and empathetic guidance"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.8867820125115049,
+        "context_precision": 0.0,
+        "context_recall": 0.8
+      }
+    }
+  ]
+}

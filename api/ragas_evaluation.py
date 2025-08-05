@@ -21,7 +21,7 @@ import time
 from dotenv import load_dotenv
 
 # Import Agent components
-from Agent import create_agent_graph, set_therapy_vector_db
+from api.Agent import create_agent_graph, set_therapy_vector_db
 from app import upload_pdf_rag
 from langchain_core.messages import HumanMessage
 from fastapi import UploadFile
@@ -65,6 +65,18 @@ class AgentRAGASEvaluator:
             # Small delay to ensure setup is complete
             await asyncio.sleep(2)
             
+            # Set up the therapy vector database and ensemble retriever for evaluation
+            # This mimics what app.py does in the chat endpoint
+            from app import pdf_documents
+            if pdf_id in pdf_documents:
+                pdf_data = pdf_documents[pdf_id]
+                vector_db = pdf_data["vector_db"]
+                chunks = pdf_data["chunks"]
+                set_therapy_vector_db(vector_db, chunks)
+                logger.info("✅ Therapy vector database and ensemble retriever set up for evaluation")
+            else:
+                logger.error(f"❌ PDF ID {pdf_id} not found in pdf_documents")
+            
             # Create agent graph
             self.agent_graph = create_agent_graph()
             logger.info("✅ Agent setup complete!")
@@ -76,8 +88,20 @@ class AgentRAGASEvaluator:
     def load_dataset(self) -> pd.DataFrame:
         """Load the test dataset from CSV."""
         try:
-            df = pd.read_csv(self.dataset_path)
+            # Use robust CSV parsing for complex data
+            df = pd.read_csv(
+                self.dataset_path,
+                quoting=1,  # QUOTE_ALL - handle complex quoting
+                quotechar='"',
+                escapechar='\\',
+                skipinitialspace=True,
+                encoding='utf-8'
+            )
+            # Reset index to ensure sequential numbering
+            df = df.reset_index(drop=True)
             logger.info(f"📊 Loaded dataset with {len(df)} test cases")
+            logger.info(f"📊 Dataset columns: {list(df.columns)}")
+            logger.info(f"📊 Dataset index: {df.index.tolist()}")
             return df
         except Exception as e:
             logger.error(f"💥 Failed to load dataset: {e}")
@@ -172,7 +196,10 @@ class AgentRAGASEvaluator:
         evaluation_data = []
         
         for index, row in df.iterrows():
-            logger.info(f"📝 Evaluating question {index + 1}/{len(df)}")
+            # logger.info(f"📝 Evaluating question {index + 1}/{len(df)}")
+            logger.info("Index: " + str(index))
+            logger.info(row)
+            
             
             question = row.get('question', row.get('user_input', ''))
             ground_truth = row.get('ground_truth', row.get('reference', 'No ground truth provided'))

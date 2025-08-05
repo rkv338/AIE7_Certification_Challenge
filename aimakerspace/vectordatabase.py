@@ -39,7 +39,7 @@ class VectorDatabase:
         k: int,
         distance_measure: Callable = cosine_similarity,
         return_as_text: bool = False,
-    ) -> List[Tuple[str, float]]:
+    ):
         query_vector = self.embedding_model.get_embedding(query_text)
         results = self.search(query_vector, k, distance_measure)
         return [result[0] for result in results] if return_as_text else results

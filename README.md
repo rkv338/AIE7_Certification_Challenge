@@ -1,9 +1,4 @@
-Components:
-upload document for top 15 problems humans face to vector db - done
-RAG from that document - done
-Reply back in an empathetic, yet constructive manner. - done
-Use Tavily for topics outside of the ones listed in the document.
-Upload text from user to vector store for further context on user
+
 
 # Task 1: Defining your Problem and Audience
 
@@ -47,4 +42,60 @@ This lack of accessible support is particularly concerning given the growing epi
 
 2. Describe the default chunking strategy that you will use.  Why did you make this decision?
      The default chunking strategy will be to split user conversations and any reference documents into manageable segments of around 500 tokens each, with a small overlap (for example, 50 tokens) between chunks. This approach ensures that each chunk contains enough context for meaningful semantic search and retrieval, while also preventing important information from being lost at chunk boundaries. The decision to use this strategy is based on balancing two needs: keeping chunks small enough for efficient vector search and LLM context windows, but large enough to preserve the flow and nuance of user conversations. Overlapping chunks help maintain continuity, so the agent can recall details even if they fall at the edge of a segment.
-3. [Optional] Will you need specific data for any other part of your application?   If so, explain.
+3. [Optional] Will you need specific data for any other part of your application? No.
+
+# Task 4: Building a Quick End-to-End Agentic RAG Prototype
+1. Build an end-to-end prototype and deploy it to a local endpoint
+     Done.
+# Task 5: Creating a Golden Test Data Set
+1. Assess your pipeline using the RAGAS framework including key metrics faithfulness, response relevance, context precision, and context recall.  Provide a table of your output results.
+
+## 🎯 Agent Performance Evaluation (RAGAS Metrics)
+
+| Metric | Score | Performance | Description |
+|--------|-------|-------------|-------------|
+| 🎯 **Faithfulness** | 0.4208 | 🔴 Needs Work | How well responses stick to the source material (therapy doc) |
+| 🎪 **Answer Relevancy** | 0.6988 | 🟡 Decent | How well responses actually answer the user's question |
+| 🔍 **Context Precision** | 0.0833 | 🔴 Critical Issue | How relevant the retrieved context is to the question |
+| 📚 **Context Recall** | 0.7466 | 🟢 Good | How well the system finds relevant info when it exists |
+
+These results were outputted to the ragas_evaluation_results.json.
+
+2. What conclusions can you draw about the performance and effectiveness of your pipeline with this information?
+     Context Precision (0.0833) is severely low, meaning the RAG system retrieves mostly irrelevant information from the therapy document
+     Faithfulness (0.4208) indicates significant hallucination, the agent frequently generates responses not grounded in the source material
+     Answer Relevancy (0.6988) shows the agent generally understands what users are asking, but responses can miss the mark.
+     Context Recall (0.7466) demonstrates the system can find relevant information when it exists.
+
+# Task 6: The Benefits of Advanced Retrieval
+1. Describe the retrieval techniques that you plan to try and to assess in your application.  Write one sentence on why you believe each technique will be useful for your use case.
+     - Ensemble Retriever w/ BM25 retriever and vector search: This technique combines keyword-based BM25 search (to catch direct therapeutic terms like "depression," "anxiety," "grief") with semantic vector search (to understand varied user expressions), addressing the critical Context Precision issue where users describe problems differently than clinical terminology in the therapy document.
+     - Contextual compression: This technique uses an LLM to extract only the most relevant portions of retrieved therapy content, providing users with focused, actionable therapeutic guidance instead of overwhelming them with full document sections, thereby improving response precision and user experience.
+2. Test a host of advanced retrieval techniques on your application.
+     - Testing has been done, results are in the JSON files in top-level directory:
+          - ragas_evaluation_regular_RAG_results.json (Baseline)
+          - ragas_evaluation_ensemble_agent.json (BM25 + Vector Search)
+          - ragas_evaluation_contextual_compression.json (LLM Compression)
+
+# Task 7: Assessing Performance
+
+1. How does the performance compare to your original RAG application?  Test the fine-tuned embedding model using the RAGAS frameworks to quantify any improvements.  Provide results in a table.
+
+## RAGAS Evaluation Results Comparison
+
+| Retrieval Technique | Faithfulness | Answer Relevancy | Context Precision | Context Recall |
+|---------------------|--------------|------------------|-------------------|----------------|
+| **Original RAG** (Baseline) | 0.4208 | 0.6988 | 0.0833 | 0.7466 |
+| **Ensemble Retriever** (BM25 + Vector) | 0.5833 | 0.8447 | 0.0833 | 0.7133 |
+| **Contextual Compression** | 0.3363 | 0.6036 | 0.0833 | 0.6855 |
+
+### Key Findings:
+- **Best Overall Performance**: Ensemble Retriever shows significant improvements in Faithfulness (+38.6%) and Answer Relevancy (+20.9%)
+- **Context Precision**: All techniques struggle equally with this metric (0.0833), indicating a consistent challenge in retrieving only relevant context
+- **Context Recall**: Baseline performs best, with Ensemble close behind
+- **Contextual Compression**: Shows decreased performance across most metrics, possibly due to over-compression losing important therapeutic context
+
+2. Articulate the changes that you expect to make to your app in the second half of the course. How will you improve your application?
+     - For an application like this, boosting the metrics in the evaluation is key. In addition, empathy needs to be measured in the responses. The agent should always be empathetic, yet constructive towards the user.
+     - Adding user messages to context/vector store. Having a contextual backlog for a specific user should help shape responses to future questions the user may have.
+     - My original idea is to actually have the agent speak directly to the user via a phone call. This would replace an impersonal alarm ringtone in the morning and allow the user to actually speak to the agent to gain clarity on their obstacles and how to overcome them before the day even starts.

@@ -144,7 +144,7 @@ async def chat_rag(request: RAGChatRequest):
     """
     try:
         # Import the Agent here to avoid circular imports
-        from Agent import create_agent_graph, set_therapy_vector_db
+        from api.Agent import create_agent_graph, set_therapy_vector_db
         
         # Check if PDF exists
         if PDF_ID not in pdf_documents:
@@ -153,7 +153,7 @@ async def chat_rag(request: RAGChatRequest):
         pdf_data = pdf_documents[PDF_ID]
         vector_db = pdf_data["vector_db"]
         
-        # Set the vector database for the agent's RAG tool
+        # Set the vector database and create ensemble retriever for the agent's RAG tool
         set_therapy_vector_db(vector_db)
         
         # Create the agent graph
