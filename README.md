@@ -18,17 +18,17 @@ This lack of accessible support is particularly concerning given the growing epi
      1. LLM
           - OpenAI GPT-4: Chosen for its strong conversational abilities and nuanced understanding, making it perfect for empathetic, context-aware chat.
      2. Embedding Model
-          - OpenAI text-embedding-ada-002: Used to turn user messages and knowledge snippets into vectors, enabling smart context recall and similarity search.
+          - OpenAI text-embedding-3-small: Excels at capturing the semantic similarities between clinical therapeutic terminology and everyday emotional expressions, enabling the system to understand when users say "I can't get out of bed" and successfully retrieve relevant depression coping strategies from the therapy document.
      3. Orchestration
           LangGraph: Useful for creating conditional flows in case a user says that the advice given is not helpful.
      4. Vector Database
-          - In-memory vector store: Stores and retrieves user context.
+          - In-memory vector store: Stores and retrieves user context. Also great for local deployments.
      5. Monitoring
           - OpenAI API logging + backend logging: Keeps an eye on system health and usage.
      6. Evaluation
           - Manual review + LangChain/Ragas Evaluation: I will personally be checking the responses to see if they are empathetic and constructive. In addition, LangChain/Ragas will also be used to measure empathy, context recall, etc.
      7. User Interface
-          - Next.js + React + Tailwind CSS: Delivers a modern, cozy chat experience that feels like texting a wise friend.
+          - Next.js + React + Tailwind CSS: Delivers a modern chat experience.
 
 3. Where will you use an agent or agents?  What will you use “agentic reasoning” for in your app?
      The core of the app is a conversational AI agent that interacts directly with users, acting as both a supportive listener and a proactive coach. Agentic reasoning is used to remember the user’s context, ask thoughtful follow-up questions, and suggest personalized actions or advice based on previous conversations. The agent actively guides the conversation, nudges users toward self-reflection, and adapts its approach over time to better support each individual’s journey. This “tough love” agent leverages agentic reasoning to balance empathy with actionable suggestions, making every chat feel both caring and constructive.
